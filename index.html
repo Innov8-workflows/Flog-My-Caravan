@@ -80,14 +80,15 @@ section{padding-block:var(--pad);position:relative}
 /* ================= NAV ================= */
 .nav{position:fixed;inset:0 0 auto;z-index:80;padding:12px 0;
   background:rgba(255,255,255,0);transition:.3s ease;border-bottom:1px solid transparent}
-.nav.stuck{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom-color:var(--line);
-  padding:8px 0;box-shadow:0 6px 22px -14px rgba(14,22,32,.5)}
+.nav.stuck,.nav.open{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom-color:var(--line);
+  box-shadow:0 6px 22px -14px rgba(14,22,32,.5)}
+.nav.stuck{padding:8px 0}
 .nav__in{display:flex;align-items:center;gap:16px}
 .nav__logo{height:104px;width:auto;transition:.3s}
 .nav.stuck .nav__logo{height:84px}
 .nav__logo--dark{display:none}
-.nav.stuck .nav__logo--light{display:none}
-.nav.stuck .nav__logo--dark{display:block}
+.nav.stuck .nav__logo--light,.nav.open .nav__logo--light{display:none}
+.nav.stuck .nav__logo--dark,.nav.open .nav__logo--dark{display:block}
 .nav__links{display:flex;gap:26px;margin-left:auto;font-weight:600;font-size:.92rem}
 .nav__links a{color:rgba(255,255,255,.92);transition:.2s;position:relative;padding-block:4px;
   text-shadow:0 1px 6px rgba(14,22,32,.5)}
@@ -104,7 +105,26 @@ section{padding-block:var(--pad);position:relative}
 .nav__call svg{width:18px;height:18px}
 .nav__call span{display:none}
 @media(min-width:520px){.nav__call span{display:inline}}
-@media(max-width:900px){.nav__links{display:none}}
+/* burger + dropdown, mobile only */
+.nav__burger{display:none;margin-left:10px;width:46px;height:46px;border-radius:10px;border:0;
+  background:transparent;color:#fff;place-items:center;cursor:pointer;flex:none}
+.nav__burger svg{width:24px;height:24px}
+.nav__burger .i-x{display:none}
+.nav.open .nav__burger .i-menu{display:none}
+.nav.open .nav__burger .i-x{display:block}
+.nav.stuck .nav__burger,.nav.open .nav__burger{color:var(--ink)}
+.nav__menu{display:none;position:absolute;top:100%;left:0;right:0;
+  background:rgba(255,255,255,.98);border-bottom:1px solid var(--line);
+  box-shadow:0 18px 30px -18px rgba(14,22,32,.4);padding:6px 16px 12px}
+.nav__menu a{display:block;padding:13px 4px;font-weight:600;font-size:.95rem;color:#33475B;
+  border-bottom:1px solid var(--line)}
+.nav__menu a:last-child{border-bottom:0}
+@media(max-width:900px){
+  .nav__links{display:none}
+  .nav__call,.nav__links + .nav__call{margin-left:auto}
+  .nav__burger{display:grid}
+  .nav.open .nav__menu{display:block}
+}
 
 /* ================= HERO ================= */
 .hero{min-height:100svh;display:grid;align-items:center;padding-block:96px 44px;overflow:hidden}
@@ -292,8 +312,8 @@ section{padding-block:var(--pad);position:relative}
 
 /* ================= MOBILE COMPACTION ================= */
 @media(max-width:700px){
-  :root{--pad:30px}
-  .hero{padding-block:84px 30px;min-height:100svh}
+  :root{--pad:20px}
+  .hero{padding-block:84px 26px;min-height:100svh}
   .hero__logo{width:min(62vw,300px);margin-bottom:10px}
   .hero h1{font-size:clamp(1.85rem,8.2vw,2.4rem)}
   .hero__sub{font-size:.93rem;margin:12px auto 18px;max-width:34ch}
@@ -306,15 +326,18 @@ section{padding-block:var(--pad);position:relative}
   .ticket__n{font-size:1.02rem}
   .ticket__l{font-size:.58rem;letter-spacing:.09em}
 
-  .sec-head{margin-bottom:16px}
+  .sec-head{margin-bottom:12px}
   .lead{font-size:.9rem}
+  /* headline says it; save the scroll on small screens */
+  .sec-head .lead{display:none}
+  .about > div:last-child .lead + .lead{display:none}
 
   .trust{padding-block:16px}
   .trust__row{gap:10px}
   .trust__i{font-size:.78rem;gap:8px}
   .trust__i svg{width:18px;height:18px}
 
-  .svc{padding:13px}
+  .svc{padding:11px}
   .svc__ico{width:32px;height:32px;border-radius:8px;margin-bottom:9px}
   .svc__ico svg{width:17px;height:17px}
   .svc h3{font-size:.98rem;margin-bottom:4px}
@@ -327,35 +350,41 @@ section{padding-block:var(--pad);position:relative}
   .tf__body h3{font-size:1.15rem}
   .tf__body p{font-size:.84rem;margin-top:8px}
 
-  .gal{gap:7px}
+  .gal{gap:6px}
+  .gal figure{aspect-ratio:16/10}
+  /* first 4 shots on the home page; the rest live on the gallery page */
+  .gal figure:nth-child(n+5){display:none}
   .gal figcaption{font-size:.66rem;padding:18px 8px 7px}
 
-  .why__i{padding:13px}
+  .why__i{padding:11px}
   .why__i svg{width:22px;height:22px;margin-bottom:7px}
   .why__i p{font-size:.76rem}
 
+  .rev__vp{margin-top:12px}
   .rev__inner{padding:15px;gap:9px}
   .rev__inner p{font-size:.85rem;line-height:1.55}
   .rev__btn{width:42px;height:42px}
   .rev__dots{margin-top:14px}
 
-  .about{gap:18px}
-  .about__img{aspect-ratio:16/10}
-  .about ul{margin-top:14px;gap:8px}
+  .about{gap:14px}
+  .about__img{aspect-ratio:16/9}
+  .about ul{margin-top:10px;gap:6px}
   .about li{font-size:.85rem}
 
-  .areas__list{gap:7px;margin-top:14px}
-  .areas__list span{padding:6px 12px;font-size:.78rem}
+  .areas__list{gap:6px;margin-top:10px}
+  .areas__list span{padding:5px 10px;font-size:.75rem}
 
   /* short fields stay side by side on mobile to cut scroll length */
-  .form{padding:16px;gap:10px}
-  .form__row{grid-template-columns:1fr 1fr;gap:10px}
-  .form label{font-size:.68rem;margin-bottom:4px}
-  .form input,.form select,.form textarea{padding:11px 12px;font-size:.9rem;min-height:46px}
-  .form textarea{min-height:76px}
+  .form{padding:14px;gap:8px}
+  .form__row{grid-template-columns:1fr 1fr;gap:8px}
+  .form label{font-size:.68rem;margin-bottom:3px}
+  .form input,.form select,.form textarea{padding:10px 12px;font-size:.9rem;min-height:44px}
+  .form textarea{min-height:64px}
   .form__note{font-size:.7rem}
-  .cinfo{gap:8px;margin-top:14px}
-  .cinfo a,.cinfo div{padding:11px 13px;gap:10px}
+  .cinfo{gap:7px;margin-top:10px}
+  .cinfo a,.cinfo div{padding:10px 12px;gap:10px}
+  /* phone + Messenger are the actions; area is in Areas, email in the footer */
+  .cinfo > div{display:none}
   .cinfo b{font-size:.9rem}
   .cinfo span{font-size:.68rem}
   .cinfo svg{width:18px;height:18px}
@@ -363,10 +392,10 @@ section{padding-block:var(--pad);position:relative}
   .fcta__cta{gap:9px}
   .fcta__cta .btn{flex:1 1 100%}
 
-  .foot{padding-block:28px 18px}
-  .foot__grid{gap:20px;grid-template-columns:1fr 1fr}
+  .foot{padding-block:18px 12px}
+  .foot__grid{gap:10px;grid-template-columns:1fr 1fr}
   .foot__grid > div:first-child{grid-column:1 / -1}
-  .foot__logo{height:58px}
+  .foot__logo{height:48px}
   .foot p{font-size:.8rem}
   .foot ul a{font-size:.82rem}
   .wa{width:52px;height:52px;right:14px;bottom:14px}
@@ -417,7 +446,18 @@ document.getElementById('favicon2').href = IMG.fav;
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span>07514 478254</span>
     </a>
+    <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <svg class="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      <svg class="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
   </div>
+  <nav class="nav__menu" id="navMenu" aria-label="Mobile">
+    <a href="#services">What we buy</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <!-- ================= HERO ================= -->
@@ -728,6 +768,16 @@ document.getElementById('favicon2').href = IMG.fav;
   var nav = document.getElementById('nav');
   function onScroll(){ nav.classList.toggle('stuck', window.scrollY > 40); }
   onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* mobile menu */
+  var burger = document.getElementById('navBurger');
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  document.getElementById('navMenu').addEventListener('click', function(e){
+    if(e.target.closest('a')){ nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
 
   /* hero slider - skipped automatically if a <video> is dropped into #heroMedia */
   var hm = document.getElementById('heroMedia');
