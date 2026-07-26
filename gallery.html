@@ -116,6 +116,31 @@ section{padding-block:var(--pad);position:relative}
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ---- cookie consent ---- */
+.cc{position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(14,22,32,.97);
+  backdrop-filter:blur(10px);color:#E4ECF3;padding:16px;box-shadow:0 -8px 30px -12px rgba(0,0,0,.6);
+  display:none}
+.cc.show{display:block}
+.cc__in{width:min(100% - 8px,1100px);margin-inline:auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.cc__txt{flex:1 1 320px;font-size:.86rem;line-height:1.55;margin:0}
+.cc__txt a{color:#7FC0FF;text-decoration:underline}
+.cc__btns{display:flex;gap:9px;flex-wrap:wrap}
+.cc__btn{font-family:'Barlow',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+  font-size:.8rem;padding:11px 18px;border-radius:9px;border:1.5px solid transparent;cursor:pointer;
+  min-height:44px;transition:.2s}
+.cc__btn--yes{background:#0572D1;color:#fff}
+.cc__btn--yes:hover{background:#2F9BFF}
+.cc__btn--no{background:transparent;color:#E4ECF3;border-color:rgba(228,236,243,.45)}
+.cc__btn--no:hover{border-color:#E4ECF3;background:rgba(255,255,255,.07)}
+@media(max-width:700px){
+  .cc{padding:13px}
+  .cc__txt{font-size:.8rem;flex-basis:100%}
+  .cc__btns{width:100%}
+  .cc__btn{flex:1 1 46%;font-size:.75rem;padding:11px 10px}
+}
+.cc-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:underline}
+
 </style>
 </head>
 <body>
@@ -200,6 +225,7 @@ document.getElementById('favicon2').href = IMG.fav;
 <footer class="foot">
   <div class="shell foot__bar">
     <img class="foot__logo" data-img="logoW" src="" alt="Flog My Caravan">
+    <p><a href="privacy.html">Privacy &amp; Cookies</a> &nbsp;|&nbsp; <button class="cc-link" type="button" data-cookie-settings>Cookie settings</button></p>
     <p><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="tel:08000469768">0800 046 9768</a> &nbsp;|&nbsp; <a href="tel:07934578326">07934 578326</a></p>
     <p>Copyright <span id="yr">2026</span> Flog My Caravan. Website by <a href="https://innov8workflows.co.uk" target="_blank" rel="noopener">Innov8 Workflows</a></p>
   </div>
@@ -207,7 +233,136 @@ document.getElementById('favicon2').href = IMG.fav;
 
 <a class="wa" href="https://wa.me/447934578326?text=Hi%20Tom%2C%20I'm%20on%20your%20website%20flogmycaravan.co.uk%20and%20I'd%20like%20to%20ask%20about%20selling%20my%20caravan." target="_blank" rel="noopener" aria-label="Message us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 
+
+<div class="cc" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie choices">
+  <div class="cc__in">
+    <p class="cc__txt">We use essential cookies to make this site work. With your permission we would also
+      use analytics cookies to see which pages people find useful. No advertising, no data sold.
+      See our <a href="privacy.html">Privacy &amp; Cookies</a> page.</p>
+    <div class="cc__btns">
+      <button class="cc__btn cc__btn--no" id="ccNo" type="button">Reject non-essential</button>
+      <button class="cc__btn cc__btn--yes" id="ccYes" type="button">Accept all</button>
+    </div>
+  </div>
+</div>
 <script>
+
+/* ---- Google Consent Mode v2: defaults must be set before any tag loads ---- */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+var FMC_GA_ID = "";
+var CC_KEY = 'fmc_consent_v1';
+
+function ccRead(){
+  try {
+    var raw = localStorage.getItem(CC_KEY);
+    if(!raw) return null;
+    var v = JSON.parse(raw);
+    /* re-ask after 6 months */
+    if(!v.t || (Date.now() - v.t) > 15552000000) return null;
+    return v;
+  } catch(e){ return null; }
+}
+function ccWrite(granted){
+  try { localStorage.setItem(CC_KEY, JSON.stringify({a:!!granted, t:Date.now()})); } catch(e){}
+}
+
+var ccSaved = ccRead();
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: (ccSaved && ccSaved.a) ? 'granted' : 'denied',
+  functionality_storage: 'granted',
+  security_storage: 'granted',
+  wait_for_update: 500
+});
+
+/* Withdrawing consent should also remove analytics cookies already dropped on a
+   previous visit - Consent Mode alone stops them being used, but leaves them in
+   the jar until they expire. */
+function ccClearAnalyticsCookies(){
+  var host = location.hostname;
+  var parts = host.split('.');
+  var domains = ['', host, '.' + host];
+  for(var i = 1; i < parts.length - 1; i++) domains.push('.' + parts.slice(i).join('.'));
+  document.cookie.split(';').forEach(function(c){
+    var name = c.split('=')[0].trim();
+    if(!name || !/^(_ga|_gid|_gat)/.test(name)) return;
+    domains.forEach(function(d){
+      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+    });
+  });
+}
+
+function ccApply(granted){
+  gtag('consent', 'update', {
+    analytics_storage: granted ? 'granted' : 'denied',
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'
+  });
+  if(granted) ccLoadGA(); else ccClearAnalyticsCookies();
+}
+
+/* GA4 loads only once, and only after consent */
+var ccGaLoaded = false;
+function ccLoadGA(){
+  if(ccGaLoaded || !FMC_GA_ID) return;
+  ccGaLoaded = true;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + FMC_GA_ID;
+  document.head.appendChild(s);
+  gtag('js', new Date());
+  gtag('config', FMC_GA_ID, { anonymize_ip: true });
+  /* flush anything captured before GA arrived */
+  while(fmcQueue.length){ var q = fmcQueue.shift(); gtag('event', q[0], q[1]); }
+}
+
+/* conversion helper - safe to call whether or not GA4 is live */
+var fmcQueue = [];
+window.fmcTrack = function(name, params){
+  params = params || {};
+  if(ccGaLoaded) gtag('event', name, params);
+  else if(fmcQueue.length < 20) fmcQueue.push([name, params]);
+};
+window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.a); } };
+
+/* ---- banner ---- */
+(function(){
+  function init(){
+    var bar = document.getElementById('cookieBar');
+    if(!bar) return;
+    var saved = ccRead();
+    if(saved){ ccApply(saved.a); } else { bar.classList.add('show'); }
+
+    function choose(granted){ ccWrite(granted); ccApply(granted); bar.classList.remove('show'); }
+    document.getElementById('ccYes').addEventListener('click', function(){ choose(true); });
+    document.getElementById('ccNo').addEventListener('click', function(){ choose(false); });
+
+    /* footer "Cookie settings" re-opens the banner */
+    document.addEventListener('click', function(e){
+      var t = e.target.closest('[data-cookie-settings]');
+      if(!t) return;
+      e.preventDefault();
+      bar.classList.add('show');
+      bar.scrollIntoView({block:'end'});
+    });
+
+    /* conversion tracking on the actions that matter */
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a');
+      if(!a) return;
+      var href = a.getAttribute('href') || '';
+      if(href.indexOf('tel:') === 0) window.fmcTrack('click_to_call', {number: href.replace('tel:','')});
+      else if(href.indexOf('wa.me') > -1) window.fmcTrack('click_whatsapp', {location: a.className || 'link'});
+      else if(href.indexOf('mailto:') === 0) window.fmcTrack('click_email', {});
+    });
+    var form = document.getElementById('waForm');
+    if(form) form.addEventListener('submit', function(){ window.fmcTrack('generate_lead', {method: 'whatsapp_form'}); });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
 document.getElementById('yr').textContent = new Date().getFullYear();
 var navEl = document.querySelector('.nav');
 var burger = document.getElementById('navBurger');
