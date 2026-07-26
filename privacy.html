@@ -309,7 +309,9 @@ document.getElementById('favicon2').href = IMG.fav;
     <p><strong>Analytics (only if you accept).</strong> With your permission we use Google Analytics to
       count visits and see which pages are useful. It sets cookies beginning <em>_ga</em> and records
       approximate location, device type and pages viewed. We cannot identify you from it. If you choose
-      "Reject non-essential", these are never set.</p>
+      "Reject non-essential", <strong>no cookies are set and nothing is stored on your device</strong>.
+      Google's measurement tag does still load and register an anonymous, cookieless page view, which
+      cannot be tied to you or joined up with any later visit.</p>
     <p>We do not use advertising or tracking cookies, and we do not sell anyone's data.</p>
     <p>You can change your mind at any time:
       <button class="cc-link" type="button" data-cookie-settings>open cookie settings</button>.</p>
@@ -442,10 +444,14 @@ function ccApply(granted){
     analytics_storage: granted ? 'granted' : 'denied',
     ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'
   });
-  if(granted) ccLoadGA(); else ccClearAnalyticsCookies();
+  if(!granted) ccClearAnalyticsCookies();
 }
 
-/* GA4 loads only once, and only after consent */
+/* Advanced consent mode: the tag ALWAYS loads, immediately after the consent
+   defaults above. Because analytics_storage starts denied, Google sets no
+   cookies and stores no identifier until the visitor accepts - it only sends
+   cookieless pings. This is what makes the tag detectable by Google Tag
+   Assistant / the GA4 setup assistant, which never click the banner. */
 var ccGaLoaded = false;
 function ccLoadGA(){
   if(ccGaLoaded || !FMC_GA_ID) return;
@@ -456,17 +462,20 @@ function ccLoadGA(){
   document.head.appendChild(s);
   gtag('js', new Date());
   gtag('config', FMC_GA_ID, { anonymize_ip: true });
-  /* flush anything captured before GA arrived */
   while(fmcQueue.length){ var q = fmcQueue.shift(); gtag('event', q[0], q[1]); }
 }
 
-/* conversion helper - safe to call whether or not GA4 is live */
+/* conversion helper - safe to call whether or not GA4 is live.
+   NB: fmcQueue must exist before ccLoadGA() runs - a var declaration hoists the
+   name but not the value, so calling the loader earlier throws on the flush. */
 var fmcQueue = [];
 window.fmcTrack = function(name, params){
   params = params || {};
   if(ccGaLoaded) gtag('event', name, params);
   else if(fmcQueue.length < 20) fmcQueue.push([name, params]);
 };
+
+ccLoadGA();
 window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.a); } };
 
 /* ---- banner ---- */
