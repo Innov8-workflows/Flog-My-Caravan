@@ -410,7 +410,48 @@ document.getElementById('favicon2').href = IMG.fav;
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 var FMC_GA_ID = "G-7SLND2FD41";
+var FMC_LEAD_URL = "";
 var CC_KEY = 'fmc_consent_v1';
+
+/* ---- lead logger: posts to a Google Sheet via Apps Script ----
+   Deliberately NOT gated behind the cookie banner. It writes nothing to the
+   visitor's device, and a submitted enquiry is data the customer has chosen to
+   send us - that is contract/legitimate-interest processing, not analytics
+   tracking. Cookie consent (PECR) governs device storage, which this has none of.
+   sendBeacon is used first because it survives the tab being replaced by the
+   WhatsApp hand-off; text/plain avoids a CORS preflight Apps Script can't answer. */
+window.fmcLead = function(data){
+  if(!FMC_LEAD_URL) return;
+  try {
+    data = data || {};
+    data.page = location.pathname + location.search;
+    data.referrer = document.referrer || '';
+    data.device = (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'mobile' : 'desktop');
+    var body = JSON.stringify(data);
+    if(navigator.sendBeacon){
+      var blob = new Blob([body], {type:'text/plain;charset=UTF-8'});
+      if(navigator.sendBeacon(FMC_LEAD_URL, blob)) return;
+    }
+    fetch(FMC_LEAD_URL, {
+      method:'POST', mode:'no-cors', keepalive:true,
+      headers:{'Content-Type':'text/plain;charset=UTF-8'}, body:body
+    });
+  } catch(e){}
+};
+
+/* Where on the page a link sits, so the sheet shows which button pulled the lead */
+function fmcWhere(el){
+  if(!el || !el.closest) return 'page';
+  if(el.classList && el.classList.contains('wa')) return 'float_widget';
+  if(el.closest('.nav__menu')) return 'mobile_menu';
+  if(el.closest('.nav')) return 'nav';
+  if(el.closest('.hero')) return 'hero';
+  if(el.closest('form')) return 'form';
+  if(el.closest('.cinfo')) return 'contact_card';
+  if(el.closest('.cta')||el.closest('.fcta')) return 'cta';
+  if(el.closest('.foot')) return 'footer';
+  return 'page';
+}
 
 function ccRead(){
   try {
@@ -519,10 +560,20 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
       var a = e.target.closest('a');
       if(!a) return;
       var href = a.getAttribute('href') || '';
-      if(href.indexOf('tel:') === 0) window.fmcTrack('click_to_call', {number: href.replace('tel:','')});
-      else if(href.indexOf('wa.me') > -1) window.fmcTrack('click_whatsapp', {location: a.className || 'link'});
-      else if(href.indexOf('mailto:') === 0) window.fmcTrack('click_email', {});
+      var where = fmcWhere(a);
+      if(href.indexOf('tel:') === 0){
+        window.fmcTrack('click_to_call', {link_location: where, number: href.replace('tel:','')});
+        window.fmcLead({type:'call_click', phone: href.replace('tel:',''), location: where});
+      } else if(href.indexOf('wa.me') > -1){
+        window.fmcTrack('click_whatsapp', {link_location: where});
+        window.fmcLead({type:'whatsapp_click', location: where});
+      } else if(href.indexOf('mailto:') === 0){
+        window.fmcTrack('click_email', {link_location: where});
+        window.fmcLead({type:'email_click', location: where});
+      }
     });
+    /* The form's own submit handler sends the field values via fmcLead; this only
+       fires the GA4 conversion so the two concerns stay separate. */
     var form = document.getElementById('waForm');
     if(form) form.addEventListener('submit', function(){ window.fmcTrack('generate_lead', {method: 'whatsapp_form'}); });
   }
