@@ -2,6 +2,8 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://crm.innov8workflows.co.uk; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; media-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sell My Caravan | Flog My Caravan</title>
 <meta name="description" content="Sell your touring caravan fast. Any make, any age, single or twin axle — straight offer, free UK-wide collection, payment before we tow away.">
@@ -67,7 +69,7 @@ section{padding-block:var(--pad);position:relative}
 .btn--pri:hover{background:var(--blue-b);transform:translateY(-2px)}
 .btn--wa{background:#25D366;color:#06301A}
 .btn--wa:hover{background:#3ee27b;transform:translateY(-2px)}
-/* nav (always the white/stuck style on subpages) */
+
 .nav{position:fixed;inset:0 0 auto;z-index:80;padding:8px 0;
   background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
   box-shadow:0 6px 22px -14px rgba(14,22,32,.5)}
@@ -105,7 +107,7 @@ section{padding-block:var(--pad);position:relative}
   .nav__burger{display:grid}
   .nav.open .nav__menu{display:block}
 }
-/* page banner */
+
 .phero{position:relative;padding:0;margin-top:0;overflow:hidden;background:var(--ink)}
 .phero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .phero__ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,22,32,.62),rgba(14,22,32,.78))}
@@ -114,7 +116,7 @@ section{padding-block:var(--pad);position:relative}
 .phero .eyebrow{color:#9FCCFF}
 .phero .eyebrow::before{background:var(--blue-l)}
 .phero__sub{color:#DCE6EF;max-width:56ch;margin:14px auto 0;font-size:clamp(.95rem,1.8vw,1.1rem);text-shadow:0 1px 8px rgba(14,22,32,.55)}
-/* content blocks */
+
 .prose{max-width:72ch}
 .prose p{color:#33475B;font-size:clamp(.93rem,1.7vw,1.02rem)}
 .bullets{display:grid;grid-template-columns:1fr;gap:10px;margin:0;padding:0;list-style:none}
@@ -130,7 +132,7 @@ section{padding-block:var(--pad);position:relative}
 .step h3{margin-bottom:6px}
 .step p{margin:0;color:var(--muted);font-size:.9rem}
 .band{background:var(--ink-2);border-block:1px solid var(--line)}
-/* faq accordion */
+
 .faq{max-width:820px;margin-inline:auto}
 .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;
   box-shadow:var(--shadow);overflow:hidden}
@@ -142,11 +144,11 @@ section{padding-block:var(--pad);position:relative}
 .faq .faq__a{padding:0 18px 16px;color:#33475B;font-size:.94rem}
 .faq .faq__a p{margin:0 0 .6rem}
 .faq .faq__a p:last-child{margin-bottom:0}
-/* areas chips */
+
 .areas__list{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
 .areas__list span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 16px;
   font-weight:600;font-size:.87rem;color:#33475B;box-shadow:var(--shadow)}
-/* contact page */
+
 .contact__grid{display:grid;gap:clamp(22px,3.4vw,48px)}
 @media(min-width:960px){.contact__grid{grid-template-columns:1fr 1.1fr}}
 .cinfo{display:grid;gap:10px;margin-top:20px}
@@ -167,13 +169,13 @@ section{padding-block:var(--pad);position:relative}
 .form textarea{min-height:96px;resize:vertical}
 .form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--blue);border-color:var(--blue)}
 .form__note{font-size:.76rem;color:var(--muted);margin:0;text-align:center}
-/* cta strip */
+
 .cta{background:var(--ink-2);border-block:1px solid var(--line);text-align:center}
 .cta p{color:var(--muted);max-width:52ch;margin-inline:auto}
 .cta__btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:22px}
 .cta__alt{margin-top:16px;font-size:.88rem}
 .cta__alt a{color:var(--blue-b);font-weight:700}
-/* footer */
+
 .foot{background:var(--ink);color:#B9C6D2;padding-block:clamp(30px,4vw,48px) 0;font-size:.9rem}
 .foot__grid{display:grid;gap:clamp(20px,3vw,44px);grid-template-columns:1fr}
 @media(min-width:800px){.foot__grid{grid-template-columns:1.4fr 1fr 1fr}}
@@ -185,16 +187,16 @@ section{padding-block:var(--pad);position:relative}
 .foot__bar{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;justify-content:space-between;
   border-top:1px solid rgba(255,255,255,.09);margin-top:clamp(22px,3vw,36px);padding-block:16px;font-size:.78rem;color:#8496A6}
 .foot__bar a{color:#B9C6D2}
-/* messenger float */
+
 .wa{position:fixed;right:18px;bottom:18px;z-index:70;width:56px;height:56px;border-radius:50%;
   background:#25D366;display:grid;place-items:center;box-shadow:0 10px 26px -8px rgba(0,0,0,.45);transition:.2s}
 .wa:hover{transform:scale(1.08)}
 .wa svg{width:30px;height:30px;color:#fff}
-/* reveal */
+
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
-/* mobile compaction */
+
 @media(max-width:700px){
   :root{--pad:22px}
   .sec-head{margin-bottom:14px}
@@ -226,7 +228,7 @@ section{padding-block:var(--pad);position:relative}
   .wa{width:52px;height:52px;right:14px;bottom:14px}
   .wa svg{width:27px;height:27px}
 }
-/* ---- cookie consent ---- */
+
 .cc{position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(14,22,32,.97);
   backdrop-filter:blur(10px);color:#E4ECF3;padding:16px;box-shadow:0 -8px 30px -12px rgba(0,0,0,.6);
   display:none}
@@ -319,7 +321,7 @@ var IMG = { logo:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAALQCAMAAACO
     <div class="sec-head rv">
       <span class="eyebrow">What we buy</span>
       <h2>If it tows, we are interested</h2>
-      
+
     </div>
     <ul class="bullets">
       <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>All makes &mdash; Swift, Bailey, Lunar, Elddis, Coachman, Hobby, Tabbert, Fendt and the rest</span></li>
@@ -336,7 +338,7 @@ var IMG = { logo:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAALQCAMAAACO
     <div class="sec-head rv">
       <span class="eyebrow">How it works</span>
       <h2>Three steps, no hassle</h2>
-      
+
     </div>
     <div class="steps3">
       <div class="step rv"><div class="step__n">1</div><h3>Tell us about it</h3><p>Ring 0800 046 9768, message us on WhatsApp or fill in the form. A few photos and the basic details are all we need.</p></div>
@@ -408,20 +410,13 @@ var IMG = { logo:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAALQCAMAAACO
   </div>
 </div>
 <script>
-/* ---- Google Consent Mode v2: defaults must be set before any tag loads ---- */
+
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 var FMC_GA_ID = "G-7SLND2FD41";
 var FMC_LEAD_URL = "https://script.google.com/macros/s/AKfycbw-p_9VKOrvtdDFKVsSazpblfguthxP-f4Xsvnl5Mb5DHj2gAt1SMOtIw8EddQ9CW2VGQ/exec";
 var CC_KEY = 'fmc_consent_v1';
 
-/* ---- lead logger: posts to a Google Sheet via Apps Script ----
-   Deliberately NOT gated behind the cookie banner. It writes nothing to the
-   visitor's device, and a submitted enquiry is data the customer has chosen to
-   send us - that is contract/legitimate-interest processing, not analytics
-   tracking. Cookie consent (PECR) governs device storage, which this has none of.
-   fetch with keepalive survives the WhatsApp hand-off; text/plain avoids a CORS
-   preflight. */
 window.fmcLead = function(data){
   if(!FMC_LEAD_URL) return;
   try {
@@ -436,7 +431,6 @@ window.fmcLead = function(data){
   } catch(e){}
 };
 
-/* Where on the page a link sits, so the sheet shows which button pulled the lead */
 function fmcWhere(el){
   if(!el || !el.closest) return 'page';
   if(el.classList && el.classList.contains('wa')) return 'float_widget';
@@ -455,7 +449,7 @@ function ccRead(){
     var raw = localStorage.getItem(CC_KEY);
     if(!raw) return null;
     var v = JSON.parse(raw);
-    /* re-ask after 6 months */
+
     if(!v.t || (Date.now() - v.t) > 15552000000) return null;
     return v;
   } catch(e){ return null; }
@@ -475,9 +469,6 @@ gtag('consent', 'default', {
   wait_for_update: 500
 });
 
-/* Withdrawing consent should also remove analytics cookies already dropped on a
-   previous visit - Consent Mode alone stops them being used, but leaves them in
-   the jar until they expire. */
 function ccClearAnalyticsCookies(){
   var host = location.hostname;
   var parts = host.split('.');
@@ -500,11 +491,6 @@ function ccApply(granted){
   if(!granted) ccClearAnalyticsCookies();
 }
 
-/* Advanced consent mode: the tag ALWAYS loads, immediately after the consent
-   defaults above. Because analytics_storage starts denied, Google sets no
-   cookies and stores no identifier until the visitor accepts - it only sends
-   cookieless pings. This is what makes the tag detectable by Google Tag
-   Assistant / the GA4 setup assistant, which never click the banner. */
 var ccGaLoaded = false;
 function ccLoadGA(){
   if(ccGaLoaded || !FMC_GA_ID) return;
@@ -518,9 +504,6 @@ function ccLoadGA(){
   while(fmcQueue.length){ var q = fmcQueue.shift(); gtag('event', q[0], q[1]); }
 }
 
-/* conversion helper - safe to call whether or not GA4 is live.
-   NB: fmcQueue must exist before ccLoadGA() runs - a var declaration hoists the
-   name but not the value, so calling the loader earlier throws on the flush. */
 var fmcQueue = [];
 window.fmcTrack = function(name, params){
   params = params || {};
@@ -531,7 +514,6 @@ window.fmcTrack = function(name, params){
 ccLoadGA();
 window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.a); } };
 
-/* ---- banner ---- */
 (function(){
   function init(){
     var bar = document.getElementById('cookieBar');
@@ -543,7 +525,6 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
     document.getElementById('ccYes').addEventListener('click', function(){ choose(true); });
     document.getElementById('ccNo').addEventListener('click', function(){ choose(false); });
 
-    /* footer "Cookie settings" re-opens the banner */
     document.addEventListener('click', function(e){
       var t = e.target.closest('[data-cookie-settings]');
       if(!t) return;
@@ -552,7 +533,6 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
       bar.scrollIntoView({block:'end'});
     });
 
-    /* conversion tracking on the actions that matter */
     document.addEventListener('click', function(e){
       var a = e.target.closest('a');
       if(!a) return;
@@ -569,8 +549,7 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
         window.fmcLead({type:'email_click', location: where});
       }
     });
-    /* The form's own submit handler sends the field values via fmcLead; this only
-       fires the GA4 conversion so the two concerns stay separate. */
+
     var form = document.getElementById('waForm');
     if(form) form.addEventListener('submit', function(){ window.fmcTrack('generate_lead', {method: 'whatsapp_form'}); });
   }

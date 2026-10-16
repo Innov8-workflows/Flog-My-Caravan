@@ -2,6 +2,8 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://crm.innov8workflows.co.uk; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; media-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://crm.innov8workflows.co.uk; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gallery | Flog My Caravan</title>
 <meta name="description" content="Caravans recently bought and collected by Flog My Caravan across Lancashire. Speak to Tom on 07934 578326.">
@@ -63,7 +65,7 @@ section{padding-block:var(--pad);position:relative}
 .btn--pri:hover{background:var(--blue-b);transform:translateY(-2px)}
 .btn--wa{background:#25D366;color:#06301A}
 .btn--wa:hover{background:#3ee27b;transform:translateY(-2px)}
-/* nav */
+
 .nav{position:fixed;inset:0 0 auto;z-index:80;padding:8px 0;
   background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
   box-shadow:0 6px 22px -14px rgba(14,22,32,.5)}
@@ -101,10 +103,10 @@ section{padding-block:var(--pad);position:relative}
   .nav__burger{display:grid}
   .nav.open .nav__menu{display:block}
 }
-/* page head */
+
 .phead{padding-top:calc(58px + var(--pad));padding-bottom:0;text-align:center}
 .phead .lead{margin-inline:auto}
-/* gallery */
+
 .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(8px,1.4vw,14px)}
 @media(min-width:820px){.gal{grid-template-columns:repeat(3,1fr)}}
 .gal figure{margin:0;position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;
@@ -114,28 +116,27 @@ section{padding-block:var(--pad);position:relative}
 .gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;color:#fff;
   background:linear-gradient(transparent,rgba(14,22,32,.88));font-family:'Barlow',sans-serif;
   font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
-/* cta strip */
+
 .cta{background:var(--ink-2);border-block:1px solid var(--line);text-align:center}
 .cta p{color:var(--muted);max-width:52ch;margin-inline:auto}
 .cta__btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:22px}
-/* footer */
+
 .foot{background:var(--ink);color:#B9C6D2;padding-block:34px;font-size:.9rem}
 .foot__bar{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:space-between}
 .foot__logo{height:44px;width:auto}
 .foot a:hover{color:#fff}
 .foot p{margin:0}
-/* wa float */
+
 .wa{position:fixed;right:18px;bottom:18px;z-index:70;width:56px;height:56px;border-radius:50%;
   background:#25D366;display:grid;place-items:center;box-shadow:0 10px 26px -8px rgba(0,0,0,.45);
   transition:.2s}
 .wa:hover{transform:scale(1.08)}
 .wa svg{width:30px;height:30px;color:#fff}
-/* reveal */
+
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
-/* ---- cookie consent ---- */
 .cc{position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(14,22,32,.97);
   backdrop-filter:blur(10px);color:#E4ECF3;padding:16px;box-shadow:0 -8px 30px -12px rgba(0,0,0,.6);
   display:none}
@@ -249,7 +250,6 @@ var IMG = { logo:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAALQCAMAAACO
 
 <a class="wa" href="https://wa.me/447934578326?text=Hi%20Tom%2C%20I'm%20on%20your%20website%20flogmycaravan.co.uk%20and%20I'd%20like%20to%20ask%20about%20selling%20my%20caravan." target="_blank" rel="noopener" aria-label="Message us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 
-
 <div class="cc" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie choices">
   <div class="cc__in">
     <p class="cc__txt">We use essential cookies to make this site work. With your permission we would also
@@ -263,20 +263,12 @@ var IMG = { logo:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAALQCAMAAACO
 </div>
 <script>
 
-/* ---- Google Consent Mode v2: defaults must be set before any tag loads ---- */
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 var FMC_GA_ID = "G-7SLND2FD41";
 var FMC_LEAD_URL = "https://script.google.com/macros/s/AKfycbw-p_9VKOrvtdDFKVsSazpblfguthxP-f4Xsvnl5Mb5DHj2gAt1SMOtIw8EddQ9CW2VGQ/exec";
 var CC_KEY = 'fmc_consent_v1';
 
-/* ---- lead logger: posts to a Google Sheet via Apps Script ----
-   Deliberately NOT gated behind the cookie banner. It writes nothing to the
-   visitor's device, and a submitted enquiry is data the customer has chosen to
-   send us - that is contract/legitimate-interest processing, not analytics
-   tracking. Cookie consent (PECR) governs device storage, which this has none of.
-   fetch with keepalive survives the WhatsApp hand-off; text/plain avoids a CORS
-   preflight. */
 window.fmcLead = function(data){
   if(!FMC_LEAD_URL) return;
   try {
@@ -291,7 +283,6 @@ window.fmcLead = function(data){
   } catch(e){}
 };
 
-/* Where on the page a link sits, so the sheet shows which button pulled the lead */
 function fmcWhere(el){
   if(!el || !el.closest) return 'page';
   if(el.classList && el.classList.contains('wa')) return 'float_widget';
@@ -310,7 +301,7 @@ function ccRead(){
     var raw = localStorage.getItem(CC_KEY);
     if(!raw) return null;
     var v = JSON.parse(raw);
-    /* re-ask after 6 months */
+
     if(!v.t || (Date.now() - v.t) > 15552000000) return null;
     return v;
   } catch(e){ return null; }
@@ -330,9 +321,6 @@ gtag('consent', 'default', {
   wait_for_update: 500
 });
 
-/* Withdrawing consent should also remove analytics cookies already dropped on a
-   previous visit - Consent Mode alone stops them being used, but leaves them in
-   the jar until they expire. */
 function ccClearAnalyticsCookies(){
   var host = location.hostname;
   var parts = host.split('.');
@@ -355,11 +343,6 @@ function ccApply(granted){
   if(!granted) ccClearAnalyticsCookies();
 }
 
-/* Advanced consent mode: the tag ALWAYS loads, immediately after the consent
-   defaults above. Because analytics_storage starts denied, Google sets no
-   cookies and stores no identifier until the visitor accepts - it only sends
-   cookieless pings. This is what makes the tag detectable by Google Tag
-   Assistant / the GA4 setup assistant, which never click the banner. */
 var ccGaLoaded = false;
 function ccLoadGA(){
   if(ccGaLoaded || !FMC_GA_ID) return;
@@ -373,9 +356,6 @@ function ccLoadGA(){
   while(fmcQueue.length){ var q = fmcQueue.shift(); gtag('event', q[0], q[1]); }
 }
 
-/* conversion helper - safe to call whether or not GA4 is live.
-   NB: fmcQueue must exist before ccLoadGA() runs - a var declaration hoists the
-   name but not the value, so calling the loader earlier throws on the flush. */
 var fmcQueue = [];
 window.fmcTrack = function(name, params){
   params = params || {};
@@ -386,7 +366,6 @@ window.fmcTrack = function(name, params){
 ccLoadGA();
 window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.a); } };
 
-/* ---- banner ---- */
 (function(){
   function init(){
     var bar = document.getElementById('cookieBar');
@@ -398,7 +377,6 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
     document.getElementById('ccYes').addEventListener('click', function(){ choose(true); });
     document.getElementById('ccNo').addEventListener('click', function(){ choose(false); });
 
-    /* footer "Cookie settings" re-opens the banner */
     document.addEventListener('click', function(e){
       var t = e.target.closest('[data-cookie-settings]');
       if(!t) return;
@@ -407,7 +385,6 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
       bar.scrollIntoView({block:'end'});
     });
 
-    /* conversion tracking on the actions that matter */
     document.addEventListener('click', function(e){
       var a = e.target.closest('a');
       if(!a) return;
@@ -424,8 +401,7 @@ window.fmcConsent = { analytics: function(){ var v = ccRead(); return !!(v && v.
         window.fmcLead({type:'email_click', location: where});
       }
     });
-    /* The form's own submit handler sends the field values via fmcLead; this only
-       fires the GA4 conversion so the two concerns stay separate. */
+
     var form = document.getElementById('waForm');
     if(form) form.addEventListener('submit', function(){ window.fmcTrack('generate_lead', {method: 'whatsapp_form'}); });
   }
